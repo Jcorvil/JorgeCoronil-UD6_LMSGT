@@ -1,0 +1,36 @@
+<html>
+ <body>
+ <table border="1">
+  <tr>
+   <th>Código Libro</th>
+   <th>Título</th>
+   <th>Editorial</th>
+   <th>Edición</th>
+   <th>ISBN</th>
+   <th>Número Páginas</th>
+   <th>Autor</th>
+  </tr>
+{
+for $libro in doc("BD_Libros.xml")//Libros/libro
+let $Cod_Libro:=$libro/Cod_Libro
+let $Titulo:=$libro/Titulo
+let $Editorial:=$libro/Editorial
+let $Edicion:=$libro/Edicion
+let $ISBN:=$libro/ISBN
+let $NumPaginas:=$libro/NumPaginas
+let $Autores:=$libro/Autores
+where matches($Titulo, '.*La.*')
+return
+ <tr>
+  <td>{data($Cod_Libro)}</td>
+  <td>{data($Titulo)}</td>
+  <td>{data($Editorial)}</td>
+  <td>{data($Edicion)}</td>
+  <td>{data($ISBN)}</td>
+  <td>{data($NumPaginas)}</td>
+  <td>{data($Autores)}</td>
+ </tr>
+}
+  </table>
+ </body>
+</html>

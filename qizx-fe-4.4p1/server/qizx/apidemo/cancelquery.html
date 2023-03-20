@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+xmlns="http://www.w3.org/1999/xhtml"
+> <head
+><title
+>Request cancelquery</title
+><link
+href="./style.css"
+rel="stylesheet"
+type="text/css"
+></link
+></head
+> <body
+><h2
+class="requestname"
+>cancelquery</h2
+><p
+class="shortd"
+>Cancel a query currently executing in the server.</p
+><p
+></p
+><form
+action="../api/"
+method="post"
+><input
+name="op"
+type="hidden"
+value="cancelquery"
+></input
+><br
+></br
+><h4
+>HTTP Request: POST</h4
+><h4
+>Parameters:</h4
+><table
+cellpadding="4"
+class="param_table"
+frame="void"
+rules="rows"
+><thead
+align="center"
+><tr
+align="left"
+><th
+>Name</th
+><th
+>Value</th
+><th
+>Descriptionformat</th
+></tr
+></thead
+><tbody
+><tr
+class="paramrow"
+valign="top"
+><td
+>xid</td
+><td
+><input
+name="xid"
+></input
+></td
+><td
+><p
+>Identifier of a query, as returned by request 'listqueries'.</p
+></td
+></tr
+></tbody
+></table
+><input
+class="submit"
+type="submit"
+value="Submit request"
+></input
+></form
+><h4
+>Response:</h4
+><p
+><i
+>   mime-type: text/plain</i
+></p
+><p
+> </p
+><p
+>Returns a single line containing "OK" if the query was found and cancelled, "idle" : if the query was found but not executing, and "unknown" if the query was not found.</p
+> <h4
+>Error codes:</h4
+><dl
+><dt
+><a
+href="errorcodes.html#AccessControl"
+>AccessControl</a
+></dt
+><dd
+>if the user does not have the admin role.</dd
+></dl
+></body
+> </html
+>

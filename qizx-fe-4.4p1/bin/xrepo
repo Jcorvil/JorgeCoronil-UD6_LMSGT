@@ -1,0 +1,25 @@
+#! /bin/bash
+
+## Wrapper script for running EXPath Repository Manager in command-line mode
+## (c) Axyana software 2011
+
+if test -z "${JAVA_HOME}"; then
+    JAVA=java
+else
+    JAVA="${JAVA_HOME}/bin/java"
+fi
+
+dbin=`dirname $0`
+if ! expr match "$dbin" "/" >& /dev/null
+then
+        dbin=`pwd`/$dbin
+fi
+
+distrib=$dbin/..
+dlib=$distrib/lib
+
+## expath-pkg is integrated in Qizx:
+CPATH=$dlib/qizx.jar:$distrib/bin:$dlib/resolver.jar:$dlibs/tagsoup-1.2.jar
+
+
+"$JAVA" -classpath $CPATH  org.expath.pkg.repo.tui.Main "$@"

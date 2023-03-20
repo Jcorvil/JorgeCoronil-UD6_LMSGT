@@ -1,0 +1,29 @@
+13:20:32.866  INFO  [LibraryManager] ---- group creation in C:\Users\1DAW_2223_18\Desktop\Lenguaje\UD6\Actividades\Act4
+13:20:32.866  INFO  [LibraryManager]  100
+13:52:30.059  INFO  [LibraryManager] shutdown begins
+13:52:30.074  INFO  [LibraryManager]  closed library BD_Libros
+13:52:30.074  INFO  [LibraryManager] shutdown complete.
+13:54:18.148  INFO  [LibraryManager] ---- starting up ----
+13:54:18.148  INFO  [LibraryManager]  100
+13:54:18.211  INFO  [LibraryManager] Library group ready
+13:59:52.028  INFO  [LibraryManager] shutdown begins
+13:59:52.030  INFO  [LibraryManager]  closed library BD_Libros
+13:59:52.030  INFO  [LibraryManager] shutdown complete.
+14:02:39.097  INFO  [LibraryManager] ---- starting up ----
+14:02:39.097  INFO  [LibraryManager]  100
+14:02:39.175  INFO  [LibraryManager] Library group ready
+14:08:01.274  INFO  [LibraryManager] shutdown begins
+14:08:01.274  INFO  [LibraryManager]  closed library BD_Libros
+14:08:01.274  INFO  [LibraryManager] shutdown complete.
+14:08:19.812  INFO  [LibraryManager] ---- starting up ----
+14:08:19.812  INFO  [LibraryManager]  100
+14:08:19.890  INFO  [LibraryManager] Library group ready
+14:35:52.099  INFO  [LibraryManager] shutdown begins
+14:35:52.099  INFO  [LibraryManager]  closed library BD_Libros
+14:35:52.099  INFO  [LibraryManager] shutdown complete.
+14:38:19.147  INFO  [LibraryManager] ---- starting up ----
+14:38:19.147  INFO  [LibraryManager]  100
+14:38:19.209  INFO  [LibraryManager] Library group ready
+14:39:41.115  INFO  [LibraryManager] shutdown begins
+14:39:41.115  INFO  [LibraryManager]  closed library BD_Libros
+14:39:41.115  INFO  [LibraryManager] shutdown complete.

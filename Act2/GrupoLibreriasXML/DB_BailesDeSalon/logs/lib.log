@@ -19,3 +19,36 @@
 09:04:55.068  INFO  [lib DB_BailesDeSalon] commit end DB_BailesDeSalon (session 1) -> state: [ 1 2 3 ][ 1 2 3 4 ]
 09:04:55.083  INFO  [lib DB_BailesDeSalon] sweeper deleted 1/1 docs: 14 in ms 0.0476
 09:04:55.083  INFO  [lib DB_BailesDeSalon] sweeper deleted 2/2 metadocs: 15, 17
+09:08:36.890  INFO  [lib DB_BailesDeSalon] commit start DB_BailesDeSalon (session 1)
+09:08:36.906  INFO  [lib DB_BailesDeSalon] commit 4 on DB_BailesDeSalon (session 1)
+09:08:36.922  INFO  [lib DB_BailesDeSalon] commit 4 done
+09:08:36.922  INFO  [lib DB_BailesDeSalon] commit end DB_BailesDeSalon (session 1) -> state: [ 1 2 3 4 ][ 1 2 3 4 5 ]
+09:08:36.922  INFO  [lib DB_BailesDeSalon] sweeper deleted 1/1 docs: 20 in ms 0.0539
+09:08:36.922  INFO  [lib DB_BailesDeSalon] sweeper deleted 2/2 metadocs: 21, 23
+09:10:24.950  INFO  [lib DB_BailesDeSalon] commit start DB_BailesDeSalon (session 1)
+09:10:24.965  INFO  [lib DB_BailesDeSalon] commit 5 on DB_BailesDeSalon (session 1)
+09:10:24.981  INFO  [lib DB_BailesDeSalon] commit 5 done
+09:10:24.981  INFO  [lib DB_BailesDeSalon] commit end DB_BailesDeSalon (session 1) -> state: [ 1 2 3 4 5 ][ 1 2 3 4 5 6 ]
+09:10:24.981  INFO  [lib DB_BailesDeSalon] sweeper deleted 1/1 docs: 26 in ms 0.0477
+09:10:24.995  INFO  [lib DB_BailesDeSalon] sweeper deleted 2/2 metadocs: 27, 29
+09:14:02.902  INFO  [lib DB_BailesDeSalon] commit start DB_BailesDeSalon (session 1)
+09:14:02.917  INFO  [lib DB_BailesDeSalon] commit 6 on DB_BailesDeSalon (session 1)
+09:14:02.933  INFO  [lib DB_BailesDeSalon] commit 6 done
+09:14:02.933  INFO  [lib DB_BailesDeSalon] sweeper deleted 1/1 docs: 32 in ms 0.0577
+09:14:02.933  INFO  [lib DB_BailesDeSalon] commit end DB_BailesDeSalon (session 1) -> state: [ 1 2 3 4 5 6 ][ 1 2 3 4 5 6 7 ]
+09:14:02.938  INFO  [lib DB_BailesDeSalon] sweeper deleted 2/2 metadocs: 33, 35
+09:15:03.423  INFO  [lib DB_BailesDeSalon] commit start DB_BailesDeSalon (session 1)
+09:15:03.454  INFO  [lib DB_BailesDeSalon] commit 7 on DB_BailesDeSalon (session 1)
+09:15:03.454  INFO  [lib DB_BailesDeSalon] commit 7 done
+09:15:03.454  INFO  [lib DB_BailesDeSalon] commit end DB_BailesDeSalon (session 1) -> state: [ 1 2 3 4 5 6 7 ][ 1 2 3 4 5 6 7 8 ]
+09:15:03.470  INFO  [lib DB_BailesDeSalon] sweeper deleted 1/1 docs: 38 in ms 0.0484
+09:15:03.470  INFO  [lib DB_BailesDeSalon] sweeper deleted 2/2 metadocs: 39, 41
+09:15:16.620  INFO  [lib DB_BailesDeSalon] commit start DB_BailesDeSalon (session 1)
+09:15:16.636  INFO  [lib DB_BailesDeSalon] commit 8 on DB_BailesDeSalon (session 1)
+09:15:16.651  INFO  [lib DB_BailesDeSalon] commit 8 done
+09:15:16.651  INFO  [lib DB_BailesDeSalon] commit end DB_BailesDeSalon (session 1) -> state: [ 1 2 3 4 5 6 7 8 ][ 1 2 3 4 5 6 7 8 9 ]
+09:15:16.667  INFO  [lib DB_BailesDeSalon] sweeper deleted 1/1 docs: 44 in ms 0.0539
+09:15:16.667  INFO  [lib DB_BailesDeSalon] sweeper deleted 2/2 metadocs: 45, 47
+09:21:25.649  INFO  [lib DB_BailesDeSalon] All sessions closed
+09:21:25.649  INFO  [lib DB_BailesDeSalon] Sweeper stopped
+09:21:25.649  INFO  [lib DB_BailesDeSalon] library closed 

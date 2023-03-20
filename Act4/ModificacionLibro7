@@ -1,0 +1,7 @@
+replace value of node
+doc("BD_Libros.xml")//Libros/libro[7]/Editorial
+with "Tusquets Editores"
+,
+replace value of node
+doc("BD_Libros.xml")//Libros/libro[7]/Edicion
+with "1"

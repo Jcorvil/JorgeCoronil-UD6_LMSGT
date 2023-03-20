@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+xml:lang="en"
+xmlns="http://www.w3.org/1999/xhtml"
+><head
+><title
+>Request getconfig</title
+><link
+href="./style.css"
+rel="stylesheet"
+type="text/css"
+></link
+></head
+><body
+><h2
+class="requestname"
+>getconfig</h2
+><p
+class="shortd"
+>Get configuration properties of the server and of XML Libraries.</p
+><p
+></p
+><form
+action="../api/"
+method="GET"
+><input
+name="op"
+type="hidden"
+value="getconfig"
+></input
+><br
+></br
+><h4
+>HTTP Request: GET</h4
+><h4
+>Parameters:</h4
+><table
+cellpadding="4"
+class="param_table"
+frame="void"
+rules="rows"
+><thead
+align="center"
+><tr
+align="left"
+><th
+>Name</th
+><th
+>Value</th
+><th
+>Descriptionformat</th
+></tr
+></thead
+><tbody
+><tr
+valign="top"
+><td
+>level</td
+><td
+><input
+name="level"
+></input
+></td
+><td
+><p
+>"admin" (the default), or "expert".</p
+><p
+>If the level is "admin", statistics are summarized, otherwise all statistics are returned.</p
+></td
+></tr
+><tr
+class="paramrow"
+valign="top"
+><td
+>format</td
+><td
+><select
+name="format"
+><option
+>text</option
+><option
+selected="selected"
+>json</option
+></select
+></td
+><td
+><ul
+><li
+>"text" : (the default) returns tab-separated lines, each containing the fields described below.</li
+><li
+>"json" : returns an array containing one map for each statistic (see below) .</li
+></ul
+></td
+></tr
+></tbody
+></table
+><input
+class="submit"
+type="submit"
+value="Submit request"
+></input
+></form
+><h4
+>Response:</h4
+><p
+><i
+>   mime-type: text/plain</i
+></p
+><p
+><i
+>   mime-type: application/json</i
+></p
+><p
+>Whatever the format, the response contains the following fields:</p
+><table
+cellpadding="4"
+class="param_table"
+frame="box"
+rules="all"
+><thead
+align="center"
+><tr
+><th
+>Field</th
+><th
+>Description</th
+></tr
+></thead
+><tbody
+><tr
+><td
+>Name</td
+><td
+>Unique name of the property</td
+></tr
+><tr
+><td
+>Category</td
+><td
+>Application category: Server | Database | XQuery | Extensions</td
+></tr
+><tr
+><td
+>Level</td
+><td
+>Audience: "admin" or "expert"</td
+></tr
+><tr
+><td
+>Value </td
+><td
+>Current value</td
+></tr
+><tr
+><td
+>DefaultValue</td
+><td
+>Default value of the property (also defines the type)</td
+></tr
+><tr
+><td
+>Description</td
+><td
+>A short description. See the Javadoc of properties for more information</td
+></tr
+></tbody
+></table
+> <h4
+>Error codes:</h4
+><dl
+><dt
+><a
+href="errorcodes.html#AccessControl"
+>AccessControl</a
+></dt
+><dd
+>if the user does not have the admin role.</dd
+></dl
+></body
+></html
+>

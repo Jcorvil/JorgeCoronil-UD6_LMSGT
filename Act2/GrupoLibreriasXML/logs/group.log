@@ -1,2 +1,5 @@
 08:18:58.511  INFO  [LibraryManager] ---- group creation in C:\Users\1DAW_2223_18\Desktop\Lenguaje\UD6\Actividades\Act2\GrupoLibreriasXML
 08:18:58.511  INFO  [LibraryManager]  100
+09:21:25.633  INFO  [LibraryManager] shutdown begins
+09:21:25.649  INFO  [LibraryManager]  closed library DB_BailesDeSalon
+09:21:25.649  INFO  [LibraryManager] shutdown complete.

@@ -1,0 +1,134 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Chapter&nbsp;15.&nbsp;Administration extension functions</title><link rel="stylesheet" href="html.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.1"><link rel="start" href="index.html" title="Qizx Manual"><link rel="up" href="reference.html" title="Part&nbsp;IV.&nbsp;Reference"><link rel="prev" href="library_extensions.html" title="Chapter&nbsp;14.&nbsp;XML Library extension functions"><link rel="next" href="ch16.html" title="Chapter&nbsp;16.&nbsp;WebApp extension functions"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter&nbsp;15.&nbsp;Administration extension functions</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="library_extensions.html">Prev</a>&nbsp;</td><th width="60%" align="center">Part&nbsp;IV.&nbsp;Reference</th><td width="20%" align="right">&nbsp;<a accesskey="n" href="ch16.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="admin_extensions"></a>Chapter&nbsp;15.&nbsp;Administration extension functions</h2></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="sect1"><a href="admin_extensions.html#d0e12461">1. Server Functions reference</a></span></dt><dt><span class="sect1"><a href="admin_extensions.html#admin_functions">2. Admin Functions reference</a></span></dt></dl></div><p>These XQuery functions allow writing administration scripts.</p><p><span class="bold"><strong>Note</strong></span>: to ensure proper execution of the operations below in XQuery, it is recommended to use</p><div class="itemizedlist"><ul type="disc"><li><p>either the XQuery Scripting extension (the semicolon instruction)</p></li><li><p>or the <em class="replaceable"><code>try catch</code></em> instruction: in Qizx <em class="replaceable"><code>try catch</code></em> guarantees that all expressions in its body are executed and in order.</p></li></ul></div><p>(Remember that XQuery is a functional language that does not guarantee any evaluation order and relies heavily on<em class="replaceable"><code> lazy evaluation</code></em>.)</p><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d0e12461"></a>1.&nbsp;Server Functions reference</h2></div></div></div><p>These function have the predefined prefix <span class="guilabel">server:</span> .</p><p>They are available only within Qizx Server and require the user to have Administrator permissions.</p><p>See also: <a class="link" href="admin_extensions.html#admin_functions" title="2.&nbsp;Admin Functions reference">Admin Functions</a>.</p><div class="variablelist"><dl><dt><span class="term"><pre class="synopsis">server:info(&nbsp;)</pre></span></dt><dd><p>Returns information about the server, in XML form.</p><p>The XML format is examplified hereafter:</p><pre class="programlisting">&lt;info&gt;
+  &lt;property&gt;&lt;Name&gt;server-name&lt;/Name&gt;&lt;Value&gt;Qizx Server&lt;/Value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;&lt;Name&gt;product-name&lt;/Name&gt;&lt;Value&gt;Qizx&lt;/Value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;&lt;Name&gt;product-version&lt;/Name&gt;&lt;Value&gt;4.4&lt;/Value&gt;
+  &lt;/property&gt;
+...
+&lt;/info&gt;
+</pre><p><b>Returned value [ type node() ]:&nbsp;</b>A XML document whose main element name is info.</p></dd><dt><span class="term"><pre class="synopsis">server:reload(&nbsp;)</pre></span></dt><dd><p>Restarts the server and reloads its configuration.</p><p><b>Returned value [ type empty() ]:&nbsp;</b>none.</p></dd><dt><span class="term"><pre class="synopsis">server:backup( $library-name as xs:string, $path as xs:string&nbsp;)</pre></span></dt><dd><p>Performs a backup of the XML Library (given by its name $library-name) to a directory of the server's file-system.</p><p><b>Parameter <em class="replaceable"><code>$library-name</code></em> [ type xs:string ]:&nbsp;</b>Name of an XML Library handled by this server.</p><p><b>Parameter <em class="replaceable"><code>$path</code></em> [ type xs:string ]:&nbsp;</b>Backup directory in the server's file-system.</p><p><b>Returned value [ type empty() ]:&nbsp;</b>none.</p></dd><dt><span class="term"><pre class="synopsis">server:incremental-backup( $library-name as xs:string, $path as xs:string&nbsp;)</pre></span></dt><dd><p>Performs an incremental backup of the XML Library (given by its name $library-name) to a directory of the server's file-system.</p><p>The former contents of the target directory are kept when possible (compatible databases), then the function computes the differences with the source database and updates only the documents, collections and indexes that have changed since the latest incremental or full backup.</p><div class="caution" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Caution</h3><p>the incremental backup cannot be used to synchronize 2 databases created separately. The target database must have been created by backup (full or incremental) of the source database, otherwise the backed up database could become inconsistent.</p></div><p><b>Parameter <em class="replaceable"><code>$library-name</code></em> [ type xs:string ]:&nbsp;</b>Name of an XML Library handled by the server.</p><p><b>Parameter <em class="replaceable"><code>$path</code></em> [ type xs:string ]:&nbsp;</b>Backup directory in the server's file-system.</p><p><b>Returned value [ type empty() ]:&nbsp;</b>none.</p></dd><dt><span class="term"><pre class="synopsis">server:optimize( $library-name as xs:string&nbsp;)</pre></span></dt><dd><p>Performs an optimization of the XML Library (given by its name $library-name).</p><p><b>Parameter <em class="replaceable"><code>$library-name</code></em> [ type xs:string ]:&nbsp;</b>Name of an XML Library handled by the server.</p><p><b>Returned value [ type empty() ]:&nbsp;</b>none.</p></dd><dt><span class="term"><pre class="synopsis">server:quick-optimize( $library-name as xs:string, $max-time as xs:int&nbsp;)</pre></span></dt><dd><p>Performs an optimization of the XML Library (given by its name $library-name) in limited time.</p><p><b>Parameter <em class="replaceable"><code>$library-name</code></em> [ type xs:string ]:&nbsp;</b>Name of an XML Library handled by the server.</p><p><b>Parameter <em class="replaceable"><code>$max-time</code></em> [ type xs:int ]:&nbsp;</b>Maximum time in seconds spent for the optimize operation (per XML Library).</p><p><b>Returned value [ type empty() ]:&nbsp;</b>none.</p></dd><dt><span class="term"><pre class="synopsis">server:reindex( $library-name as xs:string&nbsp;)</pre></span></dt><dd><p>Performs a complete reindexing of the XML Library (given by its name $library-name).</p><p><b>Parameter <em class="replaceable"><code>$library-name</code></em> [ type xs:string ]:&nbsp;</b>Name of an XML Library handled by the server.</p><p><b>Returned value [ type empty() ]:&nbsp;</b>none.</p></dd><dt><span class="term"><pre class="synopsis">server:get-indexing( $library-name as xs:string&nbsp;)</pre></span></dt><dd><p>Returns the indexing specifications of the specified XML Library.</p><p><b>Parameter <em class="replaceable"><code>$library-name</code></em> [ type xs:string ]:&nbsp;</b>Name of an XML Library handled by the server.</p><p><b>Returned value [ type node() ]:&nbsp;</b>indexing specifications in XML form.</p></dd><dt><span class="term"><pre class="synopsis">server:set-indexing( $library-name as xs:string, $indexing-spec as node()&nbsp;)</pre></span></dt><dd><p>Define the indexing specifications of the specified XML Library.</p><p><b>Parameter <em class="replaceable"><code>$library-name</code></em> [ type xs:string ]:&nbsp;</b>Name of an XML Library handled by the server.</p><p><b>Parameter <em class="replaceable"><code>$indexing-spec</code></em> [ type node() ]:&nbsp;</b>The indexing specification in XML form.</p><p><b>Returned value [ type empty() ]:&nbsp;</b>none.</p></dd><dt><span class="term"><pre class="synopsis">server:get-configuration( $expert as xs:boolean&nbsp;)</pre></span></dt><dd><p>Returns the configuration of the server in XML form.</p><p>The XML format is examplified hereafter:</p><pre class="programlisting">&lt;configuration&gt;
+  &lt;property&gt;
+    &lt;Name&gt;POST_limit&lt;/Name&gt;
+    &lt;Category&gt;Server&lt;/Category&gt;
+    &lt;Level&gt;admin&lt;/Level&gt;
+    &lt;Type&gt;Integer&lt;/Type&gt;
+    &lt;Value&gt;-1&lt;/Value&gt;
+    &lt;DefaultValue&gt;-1&lt;/DefaultValue&gt;
+    &lt;Description&gt;Maximum size in Mb of a POST request.&lt;/Description&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;Name&gt;logging_level&lt;/Name&gt;
+    &lt;Category&gt;Database&lt;/Category&gt;
+    &lt;Level&gt;admin&lt;/Level&gt;
+    &lt;Type&gt;String&lt;/Type&gt;
+    &lt;Value&gt;INFO&lt;/Value&gt;
+    &lt;DefaultValue&gt;INFO&lt;/DefaultValue&gt;
+    &lt;Description&gt;Logging level applied to all XML Libraries&lt;/Description&gt;
+  &lt;/property&gt;
+...
+&lt;/configuration&gt;                                                                                     
+</pre><p><b>Parameter <em class="replaceable"><code>$expert</code></em> [ type xs:boolean ]:&nbsp;</b>If true, return value include properties of level "expert" in addition to standard "admin" properties.</p><p><b>Returned value [ type node() ]:&nbsp;</b>A XML document whose main element name is <code class="sgmltag-element">configuration</code>.</p></dd><dt><span class="term"><pre class="synopsis">server:change-configuration($name1 as xs:string, $value1 as item()[, $name2, $value2...]&nbsp;)</pre></span></dt><dd><p>Modifies the configuration of the server: can specify one or several properties.</p><p><b>Parameter <em class="replaceable"><code>$nameN</code></em> [ type xs:string ]:&nbsp;</b>Name of a defined property of the configuration.</p><p><b>Parameter <em class="replaceable"><code>$valueN</code></em> [ type xs:object* ]:&nbsp;</b>Value of the property.</p><p><b>Returned value [ type xs:boolean ]:&nbsp;</b>true if the configuration has actually been modified.</p></dd><dt><span class="term"><pre class="synopsis">server:list-tasks( $timeline as xs:int&nbsp;)</pre></span></dt><dd><p>Returns a list of maintenance tasks executed on the server, past or active, in XML form.</p><p>The XML format is examplified hereafter:</p><pre class="programlisting">&lt;tasks&gt;
+  &lt;task&gt;
+    &lt;Type&gt;backup&lt;/Type&gt;
+    &lt;Database&gt;mydb (session 123)&lt;/Database&gt;
+    &lt;StartTime&gt;2011-10-07 21:51:36.600&lt;/StartTime&gt;
+    &lt;FinishTime&gt;2011-10-07 21:51:36.879&lt;/FinishTime&gt;
+    &lt;Duration&gt;0.27&lt;/Duration&gt;
+    &lt;Progress&gt;100.0%&lt;/Progress&gt;
+  &lt;/task&gt;
+ ...
+&lt;/tasks&gt;</pre><p><b>Parameter <em class="replaceable"><code>$timeline</code></em> [ type xs:int ]:&nbsp;</b>A duration in hours: if 0, return currently active tasks; if &gt; 0, return all tasks that started within this number of hours before now.</p><p><b>Returned value [ type node() ]:&nbsp;</b>A XML document whose main element name is tasks.</p></dd><dt><span class="term"><pre class="synopsis">server:get-stats( $expert as xs:boolean&nbsp;)</pre></span></dt><dd><p>Returns statistics of the server as XML.</p><p>The XML format of statistics is examplified hereafter: a list of &lt;stat&gt; elements enclosed inside a &lt;statistics&gt; wrapper.</p><pre class="programlisting">&lt;statistics&gt;
+  &lt;stat&gt;
+    &lt;Id&gt;collections&lt;/Id&gt;
+    &lt;Type&gt;count&lt;/Type&gt;
+    &lt;Value&gt;20&lt;/Value&gt;
+    &lt;Family&gt;Data&lt;/Family&gt;
+    &lt;Description&gt;total number of Collections&lt;/Description&gt;
+  &lt;/stat&gt;
+ ...
+  &lt;stat&gt;
+    &lt;Id&gt;index|compaction&lt;/Id&gt;
+    &lt;Type&gt;time&lt;/Type&gt;
+    &lt;Value&gt;1345 ms&lt;/Value&gt;
+    &lt;Family&gt;Activity&lt;/Family&gt;
+    &lt;Description&gt;Index optimizations&lt;/Description&gt;
+  &lt;/stat&gt;
+ ...
+&lt;/statistics&gt;</pre><p><b>Parameter <em class="replaceable"><code>$expert</code></em> [ type xs:boolean ]:&nbsp;</b>if true return a fully detailed set of statistics, if false return an aggregated subset relevant for an administrator.</p><p><b>Returned value [ type node() ]:&nbsp;</b>statistics as an XML fragment.</p></dd><dt><span class="term"><pre class="synopsis">server:list-queries(&nbsp;)</pre></span></dt><dd><p>Returns a list in XML form of queries currently executing on the server.</p><p>The XML format is examplified hereafter:</p><pre class="programlisting">&lt;queries&gt;
+  &lt;query&gt;
+    &lt;Id&gt;s2-e1&lt;/Id&gt;
+    &lt;User&gt;user&lt;/User&gt;
+    &lt;Elapsed&gt;9.53&lt;/Elapsed&gt;
+    &lt;Source&gt;count(//Product[@id &gt; 40000000])&lt;/Source&gt;
+  &lt;/query&gt;
+  &lt;query&gt;
+    &lt;Id&gt;s3-e14&lt;/Id&gt;
+    &lt;User&gt;admin&lt;/User&gt;
+    &lt;Elapsed&gt;0.0&lt;/Elapsed&gt;
+    &lt;Source&gt;server:list-queries()&lt;/Source&gt;
+  &lt;/query&gt;
+&lt;/queries&gt;</pre><p><b>Returned value [ type node() ]:&nbsp;</b>A XML document whose top element name is queries.</p></dd><dt><span class="term"><pre class="synopsis">server:cancel-query( $expr-id as xs:string&nbsp;)</pre></span></dt><dd><p>Cancels a running XQuery specified by its identifier.</p><p><b>Parameter <em class="replaceable"><code>$expr-id</code></em> [ type xs:string ]:&nbsp;</b>Identifier as returned by function <code class="literal">server:list-queries()</code></p><p><b>Returned value [ type xs:string ]:&nbsp;</b>a status equal to "OK", "idle" or "unknown" .</p><p>"idle" means that the query is not currently being executed.</p></dd><dt><span class="term"><pre class="synopsis">server:create-library( $library-name as xs:string&nbsp;)</pre></span></dt><dd><p>Creates a new XML Library.</p><p><b>Parameter <em class="replaceable"><code>$library-name</code></em> [ type xs:string ]:&nbsp;</b>Name of the library to create.</p><p><b>Returned value [ type empty() ]:&nbsp;</b>none.</p></dd><dt><span class="term"><pre class="synopsis">server:delete-library( $library-name as xs:string&nbsp;)</pre></span></dt><dd><p>Deletes an XML Library.</p><p><b>Parameter <em class="replaceable"><code>$library-name</code></em> [ type xs:string ]:&nbsp;</b>Name of the library to delete.</p><p><b>Returned value [ type empty() ]:&nbsp;</b>none.</p></dd></dl></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="admin_functions"></a>2.&nbsp;Admin Functions reference</h2></div></div></div><p>These function have the predefined prefix <span class="guilabel">admin:</span> .</p><p>They are always available in embedded mode; within Qizx Server they require the user to have Administrator permissions.</p><div class="variablelist"><dl><dt><span class="term"><pre class="synopsis">admin:info(&nbsp;)</pre></span></dt><dd><p>Returns information about the current Library Group.</p><p>The XML format is examplified hereafter:</p><pre class="programlisting">&lt;info&gt;
+  &lt;property&gt;&lt;Name&gt;server-name&lt;/Name&gt;&lt;Value&gt;Qizx Server&lt;/Value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;&lt;Name&gt;product-name&lt;/Name&gt;&lt;Value&gt;Qizx&lt;/Value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;&lt;Name&gt;product-version&lt;/Name&gt;&lt;Value&gt;4.4&lt;/Value&gt;
+  &lt;/property&gt;
+...
+&lt;/info&gt;
+</pre><p><b>Returned value [ type node() ]:&nbsp;</b>A XML fragment whose top element name is info.</p></dd><dt><span class="term"><pre class="synopsis">admin:backup( $path as xs:string&nbsp;)</pre></span></dt><dd><p>Performs a backup of the current XML Library to a directory of the server's file-system.</p><p>The former contents of the target directory are deleted before performing the backup.</p><p><b>Parameter <em class="replaceable"><code>$path</code></em> [ type xs:string ]:&nbsp;</b>Backup directory in the server's file-system.</p><p><b>Returned value [ type empty() ]:&nbsp;</b>none.</p></dd><dt><span class="term"><pre class="synopsis">admin:incremental-backup( $path as xs:string&nbsp;)</pre></span></dt><dd><p>Performs an incremental backup of the current XML Library to a directory of the server's file-system.</p><p>The former contents of the target directory are kept when possible (compatible databases), then the function computes the differences with the source database and updates only the documents, collections and indexes that have changed since the latest incremental or full backup.</p><div class="caution" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Caution</h3><p>the incremental backup cannot be used to synchronize 2 databases created separately. The target database must have been created by backup (full or incremental) of the source database, otherwise the backed up database could become inconsistent.</p></div><p><b>Parameter <em class="replaceable"><code>$path</code></em> [ type xs:string ]:&nbsp;</b>Backup directory in the server's file-system.</p><p><b>Returned value [ type empty() ]:&nbsp;</b>none.</p></dd><dt><span class="term"><pre class="synopsis">admin:optimize(&nbsp;)</pre></span></dt><dd><p>Performs an optimization of the current XML Library.</p><p><b>Returned value [ type empty() ]:&nbsp;</b></p></dd><dt><span class="term"><pre class="synopsis">admin:quick-optimize( $max-time as xs:int&nbsp;)</pre></span></dt><dd><p>Performs an optimization of the current XML Library in limited time.</p><p><b>Parameter <em class="replaceable"><code>$max-time</code></em> [ type xs:int ]:&nbsp;</b>Maximum time in seconds spent for the optimize operation (per XML Library).</p><p><b>Returned value [ type empty() ]:&nbsp;</b></p></dd><dt><span class="term"><pre class="synopsis">admin:reindex(&nbsp;)</pre></span></dt><dd><p>Performs a complete reindexing of the current XML Library.</p><p><b>Returned value [ type empty() ]:&nbsp;</b></p></dd><dt><span class="term"><pre class="synopsis">admin:get-indexing(&nbsp;)</pre></span></dt><dd><p>Returns the indexing specifications of the current XML Library.</p><p><b>Returned value [ type node() ]:&nbsp;</b>indexing specifications in XML form.</p></dd><dt><span class="term"><pre class="synopsis">admin:set-indexing( $indexing-spec as node()&nbsp;)</pre></span></dt><dd><p>Define the indexing specifications of the current XML Library.</p><p><b>Parameter <em class="replaceable"><code>$indexing-spec</code></em> [ type node() ]:&nbsp;</b>The indexing specification in XML form.</p><p><b>Returned value [ type empty() ]:&nbsp;</b>none.</p></dd><dt><span class="term"><pre class="synopsis">admin:get-configuration( $expert as xs:boolean&nbsp;)</pre></span></dt><dd><p>Returns the configuration of the current Library in XML form.</p><p>The XML format is examplified hereafter:</p><pre class="programlisting">&lt;configuration&gt;
+  &lt;property&gt;
+    &lt;Name&gt;logging_level&lt;/Name&gt;
+    &lt;Category&gt;Database&lt;/Category&gt;
+    &lt;Level&gt;admin&lt;/Level&gt;
+    &lt;Type&gt;String&lt;/Type&gt;
+    &lt;Value&gt;INFO&lt;/Value&gt;
+    &lt;DefaultValue&gt;INFO&lt;/DefaultValue&gt;
+    &lt;Description&gt;Logging level applied to all XML Libraries&lt;/Description&gt;
+  &lt;/property&gt;
+...
+&lt;/configuration&gt;                                                                                     
+</pre><p><b>Parameter <em class="replaceable"><code>$expert</code></em> [ type xs:boolean ]:&nbsp;</b>If true, return value include properties of level "expert" in addition to standard "admin" properties.</p><p><b>Returned value [ type node() ]:&nbsp;</b>A XML document whose main element name is <code class="sgmltag-element">configuration</code>.</p></dd><dt><span class="term"><pre class="synopsis">admin:change-configuration($name1 as xs:string, $value1 as item()[, $name2, $value2...]&nbsp;)</pre></span></dt><dd><p>Modifies the configuration of current Library: can specify one or several properties.</p><p><b>Parameter <em class="replaceable"><code>$nameN</code></em> [ type xs:string ]:&nbsp;</b>Name of a defined property of the configuration.</p><p><b>Parameter <em class="replaceable"><code>$valueN</code></em> [ type xs:object* ]:&nbsp;</b>Value of the property.</p><p><b>Returned value [ type xs:boolean ]:&nbsp;</b>true if the configuration has actually been modified.</p></dd><dt><span class="term"><pre class="synopsis">admin:list-tasks( $timeline as xs:int&nbsp;)</pre></span></dt><dd><p>Returns a list of maintenance tasks executed on the current Library, past or active, in XML form.</p><p>The XML format is examplified hereafter:</p><pre class="programlisting">&lt;tasks&gt;
+  &lt;task&gt;
+    &lt;Type&gt;backup&lt;/Type&gt;
+    &lt;Database&gt;mydb (session 123)&lt;/Database&gt;
+    &lt;StartTime&gt;2011-10-07 21:51:36.600&lt;/StartTime&gt;
+    &lt;FinishTime&gt;2011-10-07 21:51:36.879&lt;/FinishTime&gt;
+    &lt;Duration&gt;0.27&lt;/Duration&gt;
+    &lt;Progress&gt;100.0%&lt;/Progress&gt;
+  &lt;/task&gt;
+ ...
+&lt;/tasks&gt;</pre><p><b>Parameter <em class="replaceable"><code>$timeline</code></em> [ type xs:int ]:&nbsp;</b>A duration in hours: if 0, return currently active tasks; if &gt; 0, return all tasks that started within this number of hours before now.</p><p><b>Returned value [ type node() ]:&nbsp;</b>A XML document whose main element name is tasks.</p></dd><dt><span class="term"><pre class="synopsis">admin:get-stats( $expert as xs:boolean&nbsp;)</pre></span></dt><dd><p>Returns statistics of the current Library as XML.</p><p>The XML format of statistics is examplified hereafter: a list of &lt;stat&gt; elements enclosed inside a &lt;statistics&gt; wrapper.</p><pre class="programlisting">&lt;statistics&gt;
+  &lt;stat&gt;
+    &lt;Id&gt;collections&lt;/Id&gt;
+    &lt;Type&gt;count&lt;/Type&gt;
+    &lt;Value&gt;20&lt;/Value&gt;
+    &lt;Family&gt;Data&lt;/Family&gt;
+    &lt;Description&gt;total number of Collections&lt;/Description&gt;
+  &lt;/stat&gt;
+ ...
+  &lt;stat&gt;
+    &lt;Id&gt;index|compaction&lt;/Id&gt;
+    &lt;Type&gt;time&lt;/Type&gt;
+    &lt;Value&gt;1345 ms&lt;/Value&gt;
+    &lt;Family&gt;Activity&lt;/Family&gt;
+    &lt;Description&gt;Index optimizations&lt;/Description&gt;
+  &lt;/stat&gt;
+ ...
+&lt;/statistics&gt;</pre><p><b>Parameter <em class="replaceable"><code>$expert</code></em> [ type xs:boolean ]:&nbsp;</b>if true return a fully detailed set of statistics, if false return an aggregated subset relevant for an administrator.</p><p><b>Returned value [ type node() ]:&nbsp;</b>statistics as an XML fragment.</p></dd><dt><span class="term"><pre class="synopsis">admin:list-queries(&nbsp;)</pre></span></dt><dd><p>Returns a list in XML form of queries currently executing on the current Library.</p><p>The XML format is examplified hereafter:</p><pre class="programlisting">&lt;queries&gt;
+  &lt;query&gt;
+    &lt;Id&gt;s2-e1&lt;/Id&gt;
+    &lt;User&gt;user&lt;/User&gt;
+    &lt;Elapsed&gt;9.53&lt;/Elapsed&gt;
+    &lt;Source&gt;count(//Product[@id &gt; 40000000])&lt;/Source&gt;
+  &lt;/query&gt;
+  &lt;query&gt;
+    &lt;Id&gt;s3-e14&lt;/Id&gt;
+    &lt;User&gt;admin&lt;/User&gt;
+    &lt;Elapsed&gt;0.0&lt;/Elapsed&gt;
+    &lt;Source&gt;server:list-queries()&lt;/Source&gt;
+  &lt;/query&gt;
+&lt;/queries&gt;</pre><p><b>Returned value [ type node() ]:&nbsp;</b>A XML document whose top element name is queries.</p></dd><dt><span class="term"><pre class="synopsis">admin:cancel-query( $expr-id as xs:string&nbsp;)</pre></span></dt><dd><p>Cancels a running XQuery specified by its identifier.</p><p><b>Parameter <em class="replaceable"><code>$expr-id</code></em> [ type xs:string ]:&nbsp;</b>Identifier as returned by function <code class="literal">server:list-queries()</code></p><p><b>Returned value [ type xs:string ]:&nbsp;</b>a status equal to "OK", "idle" or "unknown" .</p><p>"idle" means that the query is not currently being executed.</p></dd></dl></div><p>&nbsp;</p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="library_extensions.html">Prev</a>&nbsp;</td><td width="20%" align="center"><a accesskey="u" href="reference.html">Up</a></td><td width="40%" align="right">&nbsp;<a accesskey="n" href="ch16.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter&nbsp;14.&nbsp;XML Library extension functions&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top">&nbsp;Chapter&nbsp;16.&nbsp;WebApp extension functions</td></tr></table></div></body></html>

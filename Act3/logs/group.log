@@ -1,0 +1,5 @@
+13:10:08.767  INFO  [LibraryManager] ---- group creation in C:\Users\1DAW_2223_18\Desktop\Lenguaje\UD6\Actividades\Act3
+13:10:08.767  INFO  [LibraryManager]  100
+13:20:26.563  INFO  [LibraryManager] shutdown begins
+13:20:26.563  INFO  [LibraryManager]  closed library BD_Libros
+13:20:26.563  INFO  [LibraryManager] shutdown complete.

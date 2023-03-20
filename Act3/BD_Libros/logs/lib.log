@@ -1,0 +1,12 @@
+13:10:36.171  INFO  [lib BD_Libros] Qizx 4.4p1 creating new XML Library in C:\Users\1DAW_2223_18\Desktop\Lenguaje\UD6\Actividades\Act3\BD_Libros
+13:10:36.171  INFO  [lib BD_Libros] create storage in C:\Users\1DAW_2223_18\Desktop\Lenguaje\UD6\Actividades\Act3\BD_Libros\contents.qdb
+13:10:36.171  INFO  [lib BD_Libros] storage created
+13:10:36.312  INFO  [lib BD_Libros] library creation done
+13:10:52.516  INFO  [lib BD_Libros] commit start BD_Libros (session 1)
+13:10:52.532  INFO  [lib BD_Libros] commit 1 on BD_Libros (session 1)
+13:10:52.563  INFO  [lib BD_Libros] commit 1 done
+13:10:52.563  INFO  [lib BD_Libros] commit end BD_Libros (session 1) -> state: [ 1 ][ 1 2 ]
+13:10:52.563  INFO  [lib BD_Libros] sweeper deleted 1/1 metadocs: 5
+13:20:26.563  INFO  [lib BD_Libros] All sessions closed
+13:20:26.563  INFO  [lib BD_Libros] Sweeper stopped
+13:20:26.563  INFO  [lib BD_Libros] library closed 
